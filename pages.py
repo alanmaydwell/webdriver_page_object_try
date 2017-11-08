@@ -5,8 +5,8 @@ Used by run_checks.py
 
 from selenium.webdriver.support.ui import WebDriverWait
 
-# Holds identifiers for each page element
-import elements
+# Holds locators for each page element
+import locators
 
 class BasePage(object):
     """Base class to with attributes common to each page"""
@@ -33,9 +33,10 @@ class LoginPage(BasePage):
     # Currently using to auto run self.wait_for_page
     def __init__(self, driver):
         # Call parent class's __init__ - need to forward driver arg to it
+        # could use BasePage.__init__(self, driver) but below considered better
         super(LoginPage, self).__init__(driver)
-        # Local alias for page elements accessed by this page
-        self.elements = elements.login_page
+        # Local alias for locators used on this page
+        self.locators = locators.login_page
         # Wait for page
         self.wait_for_page()
 
@@ -46,21 +47,21 @@ class LoginPage(BasePage):
             in driver.page_source)
 
     def type_username(self, username):
-        field = self.driver.find_element(*self.elements.get("username"))
+        field = self.driver.find_element(*self.locators.get("username"))
         field.clear()
         field.send_keys(username)
 
     def type_password(self, password):
-        field = self.driver.find_element(*self.elements.get("password"))
+        field = self.driver.find_element(*self.locators.get("password"))
         field.clear()
         field.send_keys(password)
 
     def click_go(self):
-        button = self.driver.find_element(*self.elements.get("ok_button"))
+        button = self.driver.find_element(*self.locators.get("ok_button"))
         button.click()
 
     def request_new_password(self):
-        link = self.driver.find_element(*self.elements.get("new_password"))
+        link = self.driver.find_element(*self.locators.get("new_password"))
         link.click()
 
 
@@ -71,8 +72,8 @@ class PasswordRequestPage(BasePage):
     def __init__(self, driver):
         # Call parent class's __init__ - need to forward driver arg to it
         super(PasswordRequestPage, self).__init__(driver)
-        # Local alias for page elements accessed by this page
-        self.elements = elements.password_request_page
+        # Local alias for locators used on this page
+        self.locators = locators.password_request_page
         # Wait for page
         self.wait_for_page()
 
@@ -83,12 +84,12 @@ class PasswordRequestPage(BasePage):
 
     def type_username(self, username):
         # not keen on below!
-        field = self.driver.find_element(*self.elements.get("username"))
+        field = self.driver.find_element(*self.locators.get("username"))
         field.clear()
         field.send_keys(username)
 
     def type_email(self, email):
         # not keen on below!
-        field = self.driver.find_element(*self.elements.get("email"))
+        field = self.driver.find_element(*self.locators.get("email"))
         field.clear()
         field.send_keys(email)

@@ -1,6 +1,12 @@
 """
-Holds identifiers used to identify elements of each page
+Holds Webdriver locator details  used to identify elements of each page
 Imported by pages.py
+
+Other examples hold these items in data-only classes but dictionaries used
+here instead because:
+(a) data only classes seem weird (at least in Python)
+(b) dictionaries come with some useful features built-in (e.g. they 
+are iterable which could be handy at times)
 """
 
 from selenium.webdriver.common.by import By

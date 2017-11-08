@@ -15,8 +15,8 @@ class SeleniumRun(unittest.TestCase):
         Calling unittest.main() runs each method with name starting "test"
         Doesn't seem any need to specify class name, unittest.main() finds
         out via some obscure means of its own!
-        Additionaly - setUP method auto called before each
-                    - tearDown called after each
+        Additionaly - setUP method auto called before each test
+                    - tearDown method auto called after each test
     """
 
     def setUp(self):
@@ -34,6 +34,9 @@ class SeleniumRun(unittest.TestCase):
 
         # Load the login page. In this case the home page of Python.org.
         login_page = pages.LoginPage(self.driver)
+        # Check title
+        assert login_page.get_title() == "Online Portal - Sign In", "Wrong page title"
+
         # Type username and password on page
         login_page.type_username("Galuthrax")
         login_page.type_password("shazam!")
