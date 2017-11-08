@@ -1,6 +1,7 @@
 # webdriver_page_object_try
 Attempt at using webdriver with a Page Object approach.    
 
+- Doesn't do much. Mainly attempt at setting up structure.
 - Partly based on information here: http://selenium-python.readthedocs.io/page-objects.html but with some differences.
 - Interacts with test version of (old) LAA Portal.    
 - usernames/passwords in scripts are fake.
